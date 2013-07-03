@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.trust1t</groupId>
+	<artifactId>OpenBelgianEidApplet</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<developers>
+	    <developer>
+	        <name>Quinten De Swaef</name>
+	        <email>quinten@trust1t.com</email>
+	      	<organizationUrl>http://trust1t.com</organizationUrl>
+	      	<organization>Trust1T</organization>
+	      	<timezone>+1</timezone>
+	      	<properties>
+	      		<skype>quintendeswaef@gmail.com</skype>
+	      	</properties>
+	    </developer>
+	</developers>
+	
+	<modules>
+		<module>OpenBelgianEidApplet-core</module>
+		<module>OpenBelgianEidApplet-js-api</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>GNU Affero General Public License v3</name>
+			<url>http://www.spdx.org/licenses/AGPL-3.0</url>
+		</license>
+	</licenses>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.trust1t</groupId>
+				<artifactId>OpenBelgianEidApplet-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.trust1t</groupId>
+				<artifactId>OpenBelgianEidApplet-js-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<!-- repository to deploy to -->
+	<distributionManagement>
+		<repository>
+			<id>Releases</id>
+			<url>http://bilooky.com:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>Snapshots</id>
+			<url>http://bilooky.com:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
