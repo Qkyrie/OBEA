@@ -11,11 +11,11 @@ function startApplet()
 	var minimumJavaVersion = "1.7";
 	var attributes = 
 	{
-			id : "mkq_applet",
+			id : "obea",
 			codebase: 'applet',
 			archive: 'MKQApplet.jar',
-			code: 'com/trust1t/ocs/belgianeidsigning/applet/MKQApplet.class',
-			name: 'mkqapplet',
+			code: 'com/trust1t/obea/applet/OBEA.class',
+			name: 'obea',
 			width: '0',
 			height: '0'
 	};
@@ -29,7 +29,7 @@ function startApplet()
  */
 function getCardAtr()
 {
-	return mkq_applet.getExternalInputDelegate().getCardAtr();
+	return obea.getExternalInputDelegate().getCardAtr();
 }
 
 /**
@@ -38,7 +38,7 @@ function getCardAtr()
  */
 function getAppletVersion()
 {
-	return mkq_applet.getExternalInputDelegate().getVersion();
+	return obea.getExternalInputDelegate().getVersion();
 }
 
 /**
@@ -47,72 +47,72 @@ function getAppletVersion()
  */
 function getIdentity()
 {
-	return mkq_applet.getExternalInputDelegate().getIdentity();
+	return obea.getExternalInputDelegate().getIdentity();
 }
 
 function getAddress()
 {
-	return mkq_applet.getExternalInputDelegate().getAddress();
+	return obea.getExternalInputDelegate().getAddress();
 }
 
 function getAuthenticationCertificate()
 {
-	return mkq_applet.getExternalInputDelegate().getAuthenticationCertificate();
+	return obea.getExternalInputDelegate().getAuthenticationCertificate();
 }
 
 function getSigningCertificate() 
 {
-	return mkq_applet.getExternalInputDelegate().getSigningCertificate();
+	return obea.getExternalInputDelegate().getSigningCertificate();
 }
 
 function getCACertificate()
 {
-	return mkq_applet.getExternalInputDelegate().getCACertificate();
+	return obea.getExternalInputDelegate().getCACertificate();
 }
 
 function getRootCACertificate()
 {
-	return mkq_applet.getExternalInputDelegate().getRootCACertificate();
+	return obea.getExternalInputDelegate().getRootCACertificate();
 }
 
 function getRRNCertificate()
 {
-	return mkq_applet.getExternalInputDelegate().getRRNCertificate();
+	return obea.getExternalInputDelegate().getRRNCertificate();
 }
 
 function getAuthenticationCertificateChain()
 {
-	return mkq_applet.getExternalInputDelegate().getAuthenticationCertificateChain();
+	return obea.getExternalInputDelegate().getAuthenticationCertificateChain();
 }
 
 function getSigningCertificateChain()
 {
-	return mkq_applet.getExternalInputDelegate().getSigningCertificateChain();
+	return obea.getExternalInputDelegate().getSigningCertificateChain();
 }
 
 function getCACertificateChain()
 {
-	return mkq_applet.getExternalInputDelegate().getCACertificateChain();
+	return obea.getExternalInputDelegate().getCACertificateChain();
 }
 
 function getRRNCertificateChain()
 {
-	return mkq_applet.getExternalInputDelegate().getRRNCertificateChain();
+	return obea.getExternalInputDelegate().getRRNCertificateChain();
 }
 
 function setPin(pinCode)
 {
-	mkq_applet.getExternalInputDelegate().setPin(pinCode);
+	obea.getExternalInputDelegate().setPin(pinCode);
 }
 
 function verifyPin()
 {
-	return mkq_applet.getExternalInputDelegate().verifyPin();
+	return obea.getExternalInputDelegate().verifyPin();
 }
 
 function signRsa(toEncrypt)
 {
-	return mkq_applet.getExternalInputDelegate().signRsa(toEncrypt);
+	return obea.getExternalInputDelegate().signRsa(toEncrypt);
 }
 
 
@@ -198,49 +198,49 @@ var onRRNCertificateCallback = notYetImplemented;
 function getIdentityAsync(_callback)
 {
 	onGetIdentityCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getIdentity('onGetIdentityCallback');
+	return obea.getExternalAsyncInputDelegate().getIdentity('onGetIdentityCallback');
 }
 
 function getPhotoAsync(_callback)
 {
 	onGetPhotoCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getPhoto('onGetPhotoCallback');
+	return obea.getExternalAsyncInputDelegate().getPhoto('onGetPhotoCallback');
 }
 
 function getAddressAsync(_callback)
 {
 	onGetAddressCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getAddress('onGetAddressCallback');
+	return obea.getExternalAsyncInputDelegate().getAddress('onGetAddressCallback');
 }
 
 function getAuthenticationCertificateAsync(_callback)
 {
 	onGetAuthenticationCertificateCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getAuthenticationCertificate('onGetAuthenticationCertificateCallback');
+	return obea.getExternalAsyncInputDelegate().getAuthenticationCertificate('onGetAuthenticationCertificateCallback');
 }
 
 function getSigningCertificateAsync(_callback)
 {
 	onSigningCertificateCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getSigningCertificate('onSigningCertificateCallback');
+	return obea.getExternalAsyncInputDelegate().getSigningCertificate('onSigningCertificateCallback');
 }
 
 function getCACertificateAsync(_callback)
 {
 	onCACertificateCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getCACertificate('onCACertificateCallback');
+	return obea.getExternalAsyncInputDelegate().getCACertificate('onCACertificateCallback');
 }
 
 function getRootCACertificateAsync(_callback)
 {
 	onRootCACertificateCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getRootCACertificate('onRootCACertificateCallback');
+	return obea.getExternalAsyncInputDelegate().getRootCACertificate('onRootCACertificateCallback');
 }
 
 function getRRNCertificateAsync(_callback)
 {
 	onRRNCertificateCallback = _callback;
-	return mkq_applet.getExternalAsyncInputDelegate().getRRNCertificate('onRRNCertificateCallback');
+	return obea.getExternalAsyncInputDelegate().getRRNCertificate('onRRNCertificateCallback');
 }
 
 

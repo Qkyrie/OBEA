@@ -3,8 +3,8 @@ package com.qkyrie.ts.mkqapplet.javascript.test;
 import org.junit.Test;
 
 import com.qkyrie.ts.mkqapplet.tests.TestReflectionUtils;
-import com.trust1t.ocs.belgianeidsigning.applet.JavaScriptInputManager;
-import com.trust1t.ocs.belgianeidsigning.applet.JavaScriptOutputManager;
+import com.trust1t.obea.applet.JavaScriptInputManager;
+import com.trust1t.obea.applet.JavaScriptOutputManager;
 
 import static junit.framework.Assert.*;
 
