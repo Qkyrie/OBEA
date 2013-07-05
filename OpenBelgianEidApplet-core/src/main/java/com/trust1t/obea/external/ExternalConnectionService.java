@@ -1,5 +1,36 @@
 /*
- * @author Quinten De Swaef
+ *
+ * This file is part of the Trust1T (R) project.
+ * Copyright (c) 2013 Trust1T BVBA
+ * Authors: Michallis Pashidis, Kwinten Pisman, Quinten De Swaef
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License version 3
+ * as published by the Free Software Foundation with the addition of the
+ * following permission added to Section 15 as permitted in Section 7(a):
+ * FOR ANY PART OF THE COVERED WORK IN WHICH THE COPYRIGHT IS OWNED BY Trust1T,
+ * Trust1T DISCLAIMS THE WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Affero General Public License for more details.
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program; if not, see http://www.gnu.org/licenses or write to
+ * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA, 02110-1301 USA.
+ *
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU Affero General Public License.
+ *
+ * You can be released from the requirements of the license by purchasing
+ * a commercial license. Buying such a license is mandatory as soon as you
+ * develop commercial activities involving the Trust1T software without
+ * disclosing the source code of your own applications.
+ * These activities include: offering paid services to customers as an ASP,
+ * Signing PDFs on the fly in a web application, shipping OCS with a closed
+ * source product...
  */
 package com.trust1t.obea.external;
 
@@ -18,6 +49,7 @@ import com.trust1t.obea.events.IAppletEvent;
 import com.trust1t.obea.events.IdentityFetchedEvent;
 import com.trust1t.obea.events.PhotoFetchedEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ExternalConnectionService.
  */
@@ -63,14 +95,16 @@ public abstract class ExternalConnectionService {
 	public abstract ExternalOutputManager getExternalOutputManager();
 	
 	/**
-	 * Gets the external Asynchronous input manager;
-	 * @return
+	 * Gets the external Asynchronous input manager;.
+	 *
+	 * @return the external async input manager
 	 */
 	public abstract ExternalAsyncInputManager getExternalAsyncInputManager();
 	
 	/**
-	 * gets the external async output Manager
-	 * @return
+	 * gets the external async output Manager.
+	 *
+	 * @return the external async output manager
 	 */
 	public abstract ExternalAsyncOutputManager getExternalAsyncOutputManager();
 	
@@ -87,11 +121,10 @@ public abstract class ExternalConnectionService {
 	}
 	
 	/**
-	 * _on card detected, triggered from the eventbus
+	 * _on card detected, triggered from the eventbus.
 	 *
 	 * @param cardDetectedEvent the card detected event
 	 */
-	@Subscribe
 	public void _onCardDetected(CardDetectedEvent cardDetectedEvent)
 	{
 		logger.debug("External Service received onCardDetected from eventbus");
@@ -99,17 +132,21 @@ public abstract class ExternalConnectionService {
 	}
 	
 	/**
-	 * _on card removed event, triggered from the eventbus
+	 * _on card removed event, triggered from the eventbus.
 	 *
 	 * @param cardRemovedEvent the card removed event
 	 */
-	@Subscribe
 	public void _onCardRemoved(CardRemovedEvent cardRemovedEvent)
 	{	
 		logger.debug("External Service received onCardRemoved from eventbus");
 		this.getExternalOutputManager().onCardEvent(cardRemovedEvent);
 	}
 	
+	/**
+	 * _on identity callback.
+	 *
+	 * @param identityFetchedEvent the identity fetched event
+	 */
 	@Subscribe
 	public void _onIdentityCallback(IdentityFetchedEvent identityFetchedEvent)
 	{
@@ -117,6 +154,11 @@ public abstract class ExternalConnectionService {
 		this.getExternalAsyncOutputManager().onGetIdentityAsyncCallback(identityFetchedEvent.getIdentity(), identityFetchedEvent.getCallback());
 	}
 	
+	/**
+	 * _on photo callback.
+	 *
+	 * @param photoFetchedEvent the photo fetched event
+	 */
 	@Subscribe
 	public void _onPhotoCallback(PhotoFetchedEvent photoFetchedEvent)
 	{
@@ -124,6 +166,11 @@ public abstract class ExternalConnectionService {
 		this.getExternalAsyncOutputManager().onGetPhotoAsyncCallback(photoFetchedEvent.getPhoto(), photoFetchedEvent.getCallback());
 	}
 	
+	/**
+	 * _on address callback.
+	 *
+	 * @param addressFetchedEvent the address fetched event
+	 */
 	@Subscribe
 	public void _onAddressCallback(AddressFetchedEvent addressFetchedEvent)
 	{
@@ -131,6 +178,11 @@ public abstract class ExternalConnectionService {
 		this.getExternalAsyncOutputManager().onGetAddressAsyncCallback(addressFetchedEvent.getAddress(), addressFetchedEvent.getCallback());
 	}
 	
+	/**
+	 * _on certificate callback.
+	 *
+	 * @param certificateFetchedEvent the certificate fetched event
+	 */
 	@Subscribe
 	public void _onCertificateCallback(CertificateFetchedEvent certificateFetchedEvent)
 	{

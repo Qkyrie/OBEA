@@ -10,16 +10,16 @@ import be.fedict.commons.eid.client.BeIDCardManager;
 import be.fedict.commons.eid.client.CardAndTerminalManager;
 
 import com.google.common.eventbus.EventBus;
-import com.trust1t.obea.listening.MKQCardListener;
+import com.trust1t.obea.listening.OBEACardListener;
 
 /**
  * The main class that makes sure the applet keeps running. This scanner is mainly a wrapper around
  * the terminalmanager and beidcardmanager provided by commons eid.
  */
-public class MKQCardScanner {
+public class OBEACardScanner {
 
 	/** The logger. */
-	private Logger logger = LoggerFactory.getLogger(MKQCardScanner.class);
+	private Logger logger = LoggerFactory.getLogger(OBEACardScanner.class);
 	
 	/** The is running. */
 	private boolean isRunning = false;
@@ -32,7 +32,7 @@ public class MKQCardScanner {
 	 *
 	 * @param eventBus the event bus
 	 */
-	public MKQCardScanner(EventBus eventBus)
+	public OBEACardScanner(EventBus eventBus)
 	{
 		this.eventBus = eventBus;
 		logger.trace("first init of the MKQCardScanner");
@@ -47,7 +47,7 @@ public class MKQCardScanner {
 		{
 			CardAndTerminalManager terminalManager = new CardAndTerminalManager();
 			BeIDCardManager manager = new BeIDCardManager(terminalManager);
-			manager.addBeIDCardEventListener(new MKQCardListener(eventBus));
+			manager.addBeIDCardEventListener(new OBEACardListener(eventBus));
 			
 			logger.trace("starting terminalManager");
 			terminalManager.start();
