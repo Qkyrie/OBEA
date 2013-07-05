@@ -13,7 +13,7 @@ function startApplet()
 	{
 			id : "obea",
 			codebase: 'applet',
-			archive: 'MKQApplet.jar',
+			archive: 'obea-applet.jar',
 			code: 'com/trust1t/obea/applet/OBEA.class',
 			name: 'obea',
 			width: '0',

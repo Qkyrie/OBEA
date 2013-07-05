@@ -96,6 +96,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSAddress(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 		
@@ -127,6 +128,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		}
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSPhoto(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 		
@@ -162,6 +164,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSIdentity(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -218,6 +221,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificate(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -264,6 +268,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificate(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -308,6 +313,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificate(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -355,6 +361,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificate(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 		
@@ -403,6 +410,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificate(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -455,6 +463,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificateChain(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -507,6 +516,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificateChain(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -559,6 +569,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificateChain(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -611,6 +622,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		} 
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSCertificateChain(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
@@ -681,6 +693,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 		}
 		else
 		{
+			logger.error("no card was inserted");
 			return new JSSignResponse(ExternalErrorCodes.NO_CARD_INSERTED);
 		}
 	}
