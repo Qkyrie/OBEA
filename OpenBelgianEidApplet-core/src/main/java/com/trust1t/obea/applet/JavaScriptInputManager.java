@@ -719,7 +719,7 @@ public class JavaScriptInputManager implements ExternalInputManager{
 					{
 					    byte[] originalBytes = null;
 						originalBytes = Base64.decodeBase64(base64EncodedBytes);
-						byte[] returnValue =  beidCardController.getCachedCard().sign(originalBytes, BeIDDigest.SHA_256, FileType.NonRepudiationCertificate, false);
+						byte[] returnValue =  beidCardController.getCachedCard().sign(originalBytes, BeIDDigest.SHA_512, FileType.NonRepudiationCertificate, false);
 						String returnValueEncoded = Base64.encodeBase64String(returnValue);
 						return new JSSignResponse(returnValueEncoded);
 					} 
