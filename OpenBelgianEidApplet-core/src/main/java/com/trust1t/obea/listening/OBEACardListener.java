@@ -35,13 +35,14 @@
 package com.trust1t.obea.listening;
 import javax.smartcardio.CardTerminal;
 
+import org.bushe.swing.event.EventBus;
+import org.bushe.swing.event.annotation.AnnotationProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import be.fedict.commons.eid.client.BeIDCard;
 import be.fedict.commons.eid.client.event.BeIDCardEventsListener;
 
-import com.google.common.eventbus.EventBus;
 import com.trust1t.obea.events.CardDetectedEvent;
 import com.trust1t.obea.events.CardRemovedEvent;
 
@@ -62,29 +63,17 @@ public class OBEACardListener implements BeIDCardEventsListener{
 	/** The logger. */
 	private Logger logger = LoggerFactory.getLogger(OBEACardListener.class);
 	
-	/** 
-	 * The event bus. All activities containing cards found and removed events will be posted from this class.
-	 * All listeners will be triggered by this class through the use of this eventbus */
-	private EventBus eventBus;
 	
 	/**
 	 * Instantiates a new mKQ card listener and adds itself to the eventbus.
 	 *
 	 * @param eventBus the event bus
 	 */
-	public OBEACardListener(EventBus eventBus)
+	public OBEACardListener()
 	{
-		this.eventBus = eventBus;
-		addAsListener();
+		AnnotationProcessor.process(this);
 	}
 	
-	/**
-	 * Adds the as listener.
-	 */
-	private void addAsListener()
-	{
-		this.eventBus.register(this);
-	}
 	
 	/* (non-Javadoc)
 	 * @see be.fedict.commons.eid.client.event.BeIDCardEventsListener#eIDCardEventsInitialized()
@@ -97,7 +86,7 @@ public class OBEACardListener implements BeIDCardEventsListener{
 	 */
 	public void eIDCardInserted(CardTerminal terminal, BeIDCard beidCard) {
 		logger.debug("listener detected card insert, posting it to the eventbus.");
-		eventBus.post(new CardDetectedEvent(beidCard));
+		EventBus.publish(new CardDetectedEvent(beidCard));
 	}
 
 	/* (non-Javadoc)
@@ -105,7 +94,7 @@ public class OBEACardListener implements BeIDCardEventsListener{
 	 */
 	public void eIDCardRemoved(CardTerminal terminal, BeIDCard beidCard) {
 		logger.debug("listener detected card remove, posting it to the eventbus.");
-		eventBus.post(new CardRemovedEvent(beidCard));
+		EventBus.publish(new CardRemovedEvent(beidCard));
 	}
 
 }

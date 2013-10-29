@@ -34,12 +34,12 @@
  */
 package com.trust1t.obea.applet.async;
 
+import netscape.javascript.JSObject;
+
+import org.bushe.swing.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import netscape.javascript.JSObject;
-
-import com.google.common.eventbus.EventBus;
 import com.trust1t.obea.async.ExternalAsyncOutputManager;
 import com.trust1t.obea.dto.ExternalAddress;
 import com.trust1t.obea.dto.ExternalCertificate;
@@ -55,8 +55,6 @@ public class JavaScriptAsyncOutputManager implements ExternalAsyncOutputManager{
 	/** The logger. */
 	private final Logger logger = LoggerFactory.getLogger(JavaScriptAsyncOutputManager.class);
 	
-	/** The event bus. */
-	private final EventBus eventBus;
 	
 	/** The js object. */
 	private final JSObject jsObject;
@@ -67,9 +65,8 @@ public class JavaScriptAsyncOutputManager implements ExternalAsyncOutputManager{
 	 * @param eventBus the event bus
 	 * @param jbObject the jb object
 	 */
-	public JavaScriptAsyncOutputManager(EventBus eventBus, JSObject jbObject)
+	public JavaScriptAsyncOutputManager(JSObject jbObject)
 	{
-		this.eventBus = eventBus;
 		this.jsObject = jbObject;
 	}
 	

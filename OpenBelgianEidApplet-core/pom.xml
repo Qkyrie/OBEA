@@ -1,38 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>OpenBelgianEidApplet-core</artifactId>
-  	<parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>OpenBelgianEidApplet-core</artifactId>
+	<parent>
 		<groupId>com.trust1t</groupId>
 		<artifactId>OpenBelgianEidApplet</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	
+
 	<developers>
-	    <developer>
-	        <name>Quinten De Swaef</name>
-	        <email>quinten@trust1t.com</email>
-	      	<organizationUrl>http://trust1t.com</organizationUrl>
-	      	<organization>Trust1T</organization>
-	      	<timezone>+1</timezone>
-	      	<properties>
-	      		<skype>quintendeswaef@gmail.com</skype>
-	      	</properties>
-	    </developer>
+		<developer>
+			<name>Quinten De Swaef</name>
+			<email>quinten@trust1t.com</email>
+			<organizationUrl>http://trust1t.com</organizationUrl>
+			<organization>Trust1T</organization>
+			<timezone>+1</timezone>
+			<properties>
+				<skype>quintendeswaef@gmail.com</skype>
+			</properties>
+		</developer>
 	</developers>
-	
+
 	<licenses>
 		<license>
 			<name>GNU Affero General Public License v3</name>
 			<url>http://www.spdx.org/licenses/AGPL-3.0</url>
 		</license>
 	</licenses>
-	
-	
+
+
 	<dependencies>
 		<dependency>
-        	<groupId>be.fedict.commons-eid</groupId>
-        	<artifactId>commons-eid-jca</artifactId>
+			<groupId>be.fedict.commons-eid</groupId>
+			<artifactId>commons-eid-jca</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>be.fedict.commons-eid</groupId>
@@ -47,22 +48,13 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.5</version>
 		</dependency>
+
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.0.12</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>14.0.1</version>
-		</dependency>  
-		<dependency>
-		   <groupId>com.sun.jdk.applet</groupId>
-		    <artifactId>plugin</artifactId>
-		    <version>1.5</version>
-		    <scope>system</scope>
-		    <systemPath>${java.home}/lib/plugin.jar</systemPath>
+			<groupId>com.sun.jdk.applet</groupId>
+			<artifactId>plugin</artifactId>
+			<version>1.5</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/lib/plugin.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -75,7 +67,17 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.8</version>
 		</dependency>
-	</dependencies>  
+			<dependency>
+			<groupId>org.bushe</groupId>
+			<artifactId>eventbus</artifactId>
+			<version>1.4</version>
+		</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>1.7.5</version>
+			</dependency>
+	</dependencies>
 
 
 
@@ -104,11 +106,11 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			
 		</plugins>
 	</build>
-	
+
+
+
 	<reporting>
 		<plugins>
 			<plugin>
@@ -131,20 +133,20 @@
 			</plugin>
 		</plugins>
 	</reporting>
-  
-  <dependencyManagement>
-  <dependencies>
-  	<dependency>
-        <groupId>be.fedict.commons-eid</groupId>
-        <artifactId>commons-eid-bom</artifactId>
-        <version>0.4.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-	</dependency>
-  </dependencies>
-  
-  </dependencyManagement>
-  
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>be.fedict.commons-eid</groupId>
+				<artifactId>commons-eid-bom</artifactId>
+				<version>0.4.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
 	<!-- repository to deploy to -->
 	<distributionManagement>
 		<repository>
@@ -156,6 +158,6 @@
 			<url>http://bilooky.com:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-  
+
 </project>
 

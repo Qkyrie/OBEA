@@ -39,7 +39,6 @@ import netscape.javascript.JSObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.eventbus.EventBus;
 import com.trust1t.obea.applet.async.JavaScriptAsyncInputManager;
 import com.trust1t.obea.applet.async.JavaScriptAsyncOutputManager;
 import com.trust1t.obea.async.ExternalAsyncInputManager;
@@ -79,15 +78,15 @@ public class JavaScriptController extends ExternalConnectionService{
 	 * @param appletController the applet controller
 	 * @param jsObject the js object
 	 */
-	public JavaScriptController(EventBus eventBus, BeidCardController appletController, JSObject jsObject)
+	public JavaScriptController(BeidCardController appletController, JSObject jsObject)
 	{
-		super(eventBus);
+		super();
 		logger.debug("init of the JavaScriptController");
 		
 		this.externalOutputManager = new JavaScriptOutputManager(jsObject);
 		this.externalInputManager = new JavaScriptInputManager(appletController);
-		this.externalAsyncInputManager = new JavaScriptAsyncInputManager(eventBus, this);
-		this.externalAsyncOutputManager = new JavaScriptAsyncOutputManager(eventBus, jsObject);
+		this.externalAsyncInputManager = new JavaScriptAsyncInputManager(this);
+		this.externalAsyncOutputManager = new JavaScriptAsyncOutputManager(jsObject);
 	}
 	
 

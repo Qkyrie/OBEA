@@ -37,11 +37,10 @@ package com.trust1t.obea.applet.async;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.bushe.swing.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-import com.google.common.eventbus.EventBus;
 import com.trust1t.obea.async.ExternalAsyncInputManager;
 import com.trust1t.obea.events.AddressFetchedEvent;
 import com.trust1t.obea.events.CertificateFetchedEvent;
@@ -63,9 +62,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 	
 	/** The external connection service. */
 	private final ExternalConnectionService externalConnectionService;
-	
-	/** The event bus. */
-	private final EventBus eventBus;
+
 	
 	/**
 	 * Instantiates a new java script async input manager.
@@ -73,9 +70,8 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 	 * @param eventBus the event bus
 	 * @param externalConnectionService the external connection service
 	 */
-	public JavaScriptAsyncInputManager(EventBus eventBus, ExternalConnectionService externalConnectionService)
+	public JavaScriptAsyncInputManager(ExternalConnectionService externalConnectionService)
 	{
-		this.eventBus = eventBus;
 		this.externalConnectionService = externalConnectionService;
 		//only create a threadpool of size 1, it should be a blockingqueue
 		this.executorService = Executors.newSingleThreadExecutor();
@@ -91,7 +87,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async Photo");
 				PhotoFetchedEvent event = new PhotoFetchedEvent(getExternalConnectionService().getExternalInputManager().getPhoto(),callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running Async Photo");
 			}
 		});
@@ -106,7 +102,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async identity");
 				IdentityFetchedEvent event = new IdentityFetchedEvent(getExternalConnectionService().getExternalInputManager().getIdentity(),callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running Async identity");
 			}
 		});
@@ -122,7 +118,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async address");
 				AddressFetchedEvent event = new AddressFetchedEvent(getExternalConnectionService().getExternalInputManager().getAddress(), callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running async address");
 			}
 		});
@@ -140,7 +136,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async authentication certificate");
 				CertificateFetchedEvent event = new CertificateFetchedEvent(getExternalConnectionService().getExternalInputManager().getAuthenticationCertificate(), callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running authentication certificate");
 			}
 		});
@@ -156,7 +152,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async signing certificate");
 				CertificateFetchedEvent event = new CertificateFetchedEvent(getExternalConnectionService().getExternalInputManager().getSigningCertificate(), callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running signing certificate");
 			}
 		});
@@ -173,7 +169,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async ca certificate");
 				CertificateFetchedEvent event = new CertificateFetchedEvent(getExternalConnectionService().getExternalInputManager().getCACertificate(), callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running ca certificate");
 			}
 		});
@@ -190,7 +186,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async rootca certificate");
 				CertificateFetchedEvent event = new CertificateFetchedEvent(getExternalConnectionService().getExternalInputManager().getRootCACertificate(), callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running rootca certificate ");
 			}
 		});
@@ -207,7 +203,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("Running Async rrn certificate");
 				CertificateFetchedEvent event = new CertificateFetchedEvent(getExternalConnectionService().getExternalInputManager().getRRNCertificate(), callback);
-				eventBus.post(event);
+				EventBus.publish(event);
 				logger.debug("Done running rrn certificate");
 			}
 		});
@@ -223,13 +219,5 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 		return externalConnectionService;
 	}
 
-	/**
-	 * Gets the event bus.
-	 *
-	 * @return the event bus
-	 */
-	public EventBus getEventBus() {
-		return eventBus;
-	}
 
 }

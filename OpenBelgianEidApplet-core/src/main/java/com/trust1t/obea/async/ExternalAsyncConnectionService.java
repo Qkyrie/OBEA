@@ -34,7 +34,8 @@
  */
 package com.trust1t.obea.async;
 
-import com.google.common.eventbus.EventBus;
+import org.bushe.swing.event.EventBus;
+import org.bushe.swing.event.annotation.AnnotationProcessor;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -53,16 +54,10 @@ public class ExternalAsyncConnectionService {
 	public ExternalAsyncConnectionService(EventBus eventBus)
 	{
 		this.eventBus = eventBus;
-		addAsListener();
+		AnnotationProcessor.process(this);
 	}
 	
-	/**
-	 * Adds the as listener.
-	 */
-	private void addAsListener()
-	{
-		this.eventBus.register(this);
-	}
+
 	
 	
 	

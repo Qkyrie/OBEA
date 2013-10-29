@@ -37,12 +37,12 @@ import java.applet.Applet;
 
 import netscape.javascript.JSObject;
 
+import org.bushe.swing.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import sun.plugin.javascript.navig4.Window;
 
-import com.google.common.eventbus.EventBus;
 import com.trust1t.obea.async.ExternalAsyncInputManager;
 import com.trust1t.obea.events.AppletLoadedEvent;
 import com.trust1t.obea.external.ExternalInputManager;
@@ -80,18 +80,17 @@ public class OBEA extends Applet{
 	{
 		logger.debug("starting up");
 		logger.debug("creation of the eventbus");
-		eventBus = new EventBus();
+
 		
-		OBEACardScanner cardScanner = new OBEACardScanner(eventBus);
+		OBEACardScanner cardScanner = new OBEACardScanner();
 		
 		JSObject jsObject = initiateLiveConnect();
 		
-		BeidCardController controller = new BeidCardController(eventBus, jsObject);
+		BeidCardController controller = new BeidCardController(jsObject);
 		this.externalInputDelegate = controller.getExternalConnectionService().getExternalInputManager();
 		this.externalAsyncInputDelegate = controller.getExternalConnectionService().getExternalAsyncInputManager();
 		applicationStarted();
 		cardScanner.init();
-		
 	}
 	
 	/**
@@ -125,7 +124,7 @@ public class OBEA extends Applet{
 	private void applicationStarted()
 	{
 		logger.debug("going to post that applet started");
-		eventBus.post(new AppletLoadedEvent());
+		EventBus.publish(new AppletLoadedEvent());
 	}
 	
 

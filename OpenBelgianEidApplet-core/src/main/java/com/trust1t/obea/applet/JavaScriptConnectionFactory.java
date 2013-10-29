@@ -36,7 +36,8 @@ package com.trust1t.obea.applet;
 
 import netscape.javascript.JSObject;
 
-import com.google.common.eventbus.EventBus;
+import org.bushe.swing.event.EventBus;
+
 import com.trust1t.obea.external.ExternalConnectionService;
 import com.trust1t.obea.service.BeidCardController;
 
@@ -54,8 +55,8 @@ public class JavaScriptConnectionFactory {
 	 * @param jsObject the js object
 	 * @return the external connection service
 	 */
-	public static ExternalConnectionService createExternalConnection(EventBus eventBus, BeidCardController appletController, JSObject jsObject)
+	public static ExternalConnectionService createExternalConnection(BeidCardController appletController, JSObject jsObject)
 	{
-		return new JavaScriptController(eventBus, appletController, jsObject);
+		return new JavaScriptController(appletController, jsObject);
 	}
 }

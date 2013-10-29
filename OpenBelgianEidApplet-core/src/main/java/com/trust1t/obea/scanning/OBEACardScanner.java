@@ -3,13 +3,13 @@
  */
 package com.trust1t.obea.scanning;
 
+import org.bushe.swing.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import be.fedict.commons.eid.client.BeIDCardManager;
 import be.fedict.commons.eid.client.CardAndTerminalManager;
 
-import com.google.common.eventbus.EventBus;
 import com.trust1t.obea.listening.OBEACardListener;
 
 /**
@@ -24,17 +24,14 @@ public class OBEACardScanner {
 	/** The is running. */
 	private boolean isRunning = false;
 	
-	/** The event bus. */
-	private EventBus eventBus;
-	
+
 	/**
 	 * Instantiates a new mKQ card scanner.
 	 *
 	 * @param eventBus the event bus
 	 */
-	public OBEACardScanner(EventBus eventBus)
+	public OBEACardScanner()
 	{
-		this.eventBus = eventBus;
 		logger.trace("first init of the MKQCardScanner");
 	}
 	
@@ -47,7 +44,7 @@ public class OBEACardScanner {
 		{
 			CardAndTerminalManager terminalManager = new CardAndTerminalManager();
 			BeIDCardManager manager = new BeIDCardManager(terminalManager);
-			manager.addBeIDCardEventListener(new OBEACardListener(eventBus));
+			manager.addBeIDCardEventListener(new OBEACardListener());
 			
 			logger.trace("starting terminalManager");
 			terminalManager.start();

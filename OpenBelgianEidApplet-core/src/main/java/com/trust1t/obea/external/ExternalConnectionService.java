@@ -34,11 +34,12 @@
  */
 package com.trust1t.obea.external;
 
+import org.bushe.swing.event.EventBus;
+import org.bushe.swing.event.annotation.AnnotationProcessor;
+import org.bushe.swing.event.annotation.EventSubscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
 import com.trust1t.obea.async.ExternalAsyncInputManager;
 import com.trust1t.obea.async.ExternalAsyncOutputManager;
 import com.trust1t.obea.events.AddressFetchedEvent;
@@ -58,28 +59,17 @@ public abstract class ExternalConnectionService {
 	/** The logger. */
 	private Logger logger = LoggerFactory.getLogger(ExternalConnectionService.class);
 	
-	/** The event bus. */
-	private EventBus eventBus;
 	
 	/**
 	 * Instantiates a new external connection service.
 	 *
 	 * @param eventBus the event bus
 	 */
-	public ExternalConnectionService(EventBus eventBus)
+	public ExternalConnectionService()
 	{
-		this.eventBus = eventBus;
-		addAsListener();
+		AnnotationProcessor.process(this);
 	}
 	
-	/**
-	 * Adds the as listener.
-	 */
-	private void addAsListener()
-	{
-		eventBus.register(this);
-	}
-
 	/**
 	 * Gets the external input manager.
 	 *
@@ -113,7 +103,7 @@ public abstract class ExternalConnectionService {
 	 *
 	 * @param appletEvent the applet event
 	 */
-	@Subscribe
+	@EventSubscriber(eventClass=IAppletEvent.class)
 	public void _onAppletEvent(IAppletEvent appletEvent)
 	{
 		logger.debug("External Service received appletevent from eventbus");
@@ -147,7 +137,7 @@ public abstract class ExternalConnectionService {
 	 *
 	 * @param identityFetchedEvent the identity fetched event
 	 */
-	@Subscribe
+	@EventSubscriber(eventClass=IdentityFetchedEvent.class)
 	public void _onIdentityCallback(IdentityFetchedEvent identityFetchedEvent)
 	{
 		logger.debug("External Service received onIdentity Callback from eventbus");
@@ -159,7 +149,7 @@ public abstract class ExternalConnectionService {
 	 *
 	 * @param photoFetchedEvent the photo fetched event
 	 */
-	@Subscribe
+	@EventSubscriber(eventClass=PhotoFetchedEvent.class)
 	public void _onPhotoCallback(PhotoFetchedEvent photoFetchedEvent)
 	{
 		logger.debug("External Service received onPhoto Callback from eventBus");
@@ -171,7 +161,7 @@ public abstract class ExternalConnectionService {
 	 *
 	 * @param addressFetchedEvent the address fetched event
 	 */
-	@Subscribe
+	@EventSubscriber(eventClass=AddressFetchedEvent.class)
 	public void _onAddressCallback(AddressFetchedEvent addressFetchedEvent)
 	{
 		logger.debug("External Service received onAddress callback from eventbus");
@@ -183,7 +173,7 @@ public abstract class ExternalConnectionService {
 	 *
 	 * @param certificateFetchedEvent the certificate fetched event
 	 */
-	@Subscribe
+	@EventSubscriber(eventClass=CertificateFetchedEvent.class)
 	public void _onCertificateCallback(CertificateFetchedEvent certificateFetchedEvent)
 	{
 		logger.debug("External service received oncertificate callback from eventbus");

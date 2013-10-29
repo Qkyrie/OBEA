@@ -39,6 +39,7 @@ import org.junit.Test;
 import com.qkyrie.ts.mkqapplet.tests.TestReflectionUtils;
 import com.trust1t.obea.applet.JavaScriptInputManager;
 import com.trust1t.obea.applet.JavaScriptOutputManager;
+import com.trust1t.obea.applet.async.JavaScriptAsyncInputManager;
 
 import static junit.framework.Assert.*;
 
@@ -48,6 +49,53 @@ import static junit.framework.Assert.*;
  */
 public class JavaScriptInputManagerAPITest {
 	
+	/** asynchronous methods **/
+	
+	@Test
+	public void getPhotoExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getPhoto", String.class));
+	}
+	
+	@Test
+	public void getIdentityExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getIdentity", String.class));
+	}
+	
+	@Test
+	public void getAddressExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getAddress", String.class));
+	}
+
+	@Test
+	public void getAuthenticationCertificateExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getAuthenticationCertificate", String.class));
+	}
+	
+
+	@Test
+	public void getSigningCertificateExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getSigningCertificate", String.class));
+	}
+	
+
+	@Test
+	public void getCACertificateExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getCACertificate", String.class));
+	}
+	
+
+	@Test
+	public void getRootCACertificateExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getRootCACertificate", String.class));
+	}
+	
+
+	@Test
+	public void getRRNCertificateExists(){
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getRRNCertificate", String.class));
+	}
+	
+	/** synchronous methods **/
 	/**
 	 * Check if the method for getting the version in the api still exists.
 	 *
@@ -58,5 +106,102 @@ public class JavaScriptInputManagerAPITest {
 	{
 		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getVersion", null));
 	}
+	/**
+	 * Check if the method for getting the version in the api still exists.
+	 *
+	 * @return the version exists
+	 */
+	
+	@Test
+	public void getAddress()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getAddress", null));
+	}
+	
+	@Test
+	public void getPhoto()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getPhoto", null));
+	}
+	
+	@Test
+	public void getIdentity()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getIdentity", null));
+	}
+	
+	@Test
+	public void getAuthenticationCertificate()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getAuthenticationCertificate", null));
+	}
+	
+	@Test
+	public void getRRNCertificate()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getRRNCertificate", null));
+	}
+	
+	@Test
+	public void getSigningCertificate()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getSigningCertificate", null));
+	}
+	
+	@Test
+	public void getCACertificate()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getCACertificate", null));
+	}
+	
+	@Test
+	public void getRootCACertificate()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getRootCACertificate", null));
+	}
+	
+	@Test
+	public void getAuthenticationCertificateChain()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getAuthenticationCertificateChain", null));
+	}
+	
+	@Test
+	public void getSigningCertificateChain()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getSigningCertificateChain", null));
+	}
+	
+	@Test
+	public void getCACertificateChain()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getCACertificateChain", null));
+	}
+	
+	@Test
+	public void getRRNCertificateChain()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "getRRNCertificateChain", null));
+	}
+	
 
+	@Test
+	public void verifyPin()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "verifyPin", null));
+	}
+	
+
+	@Test
+	public void signRSA()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "signRsa", String.class));
+	}
+	
+	@Test
+	public void setPin()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptInputManager.class, "setPin", String.class));
+	}
+	
 }

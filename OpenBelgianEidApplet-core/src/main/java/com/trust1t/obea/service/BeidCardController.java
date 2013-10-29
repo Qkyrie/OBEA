@@ -36,14 +36,15 @@ package com.trust1t.obea.service;
 
 import netscape.javascript.JSObject;
 
+import org.bushe.swing.event.EventBus;
+import org.bushe.swing.event.annotation.AnnotationProcessor;
+import org.bushe.swing.event.annotation.EventSubscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import be.fedict.commons.eid.client.BeIDCard;
 import be.fedict.commons.eid.client.spi.BeIDCardUI;
 
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
 import com.trust1t.obea.applet.JavaScriptConnectionFactory;
 import com.trust1t.obea.applet.ui.UIBridge;
 import com.trust1t.obea.events.CardDetectedEvent;
@@ -73,9 +74,6 @@ public class BeidCardController {
 	/** The cached card. */
 	private BeIDCard cachedCard;
 	
-	/** The eventbus. */
-	private EventBus eventbus;
-	
 	/** The ui bridge. */
 	private UIBridge uiBridge;
 	
@@ -85,12 +83,11 @@ public class BeidCardController {
 	 * @param eventBus the event bus
 	 * @param jsObject the js object
 	 */
-	public BeidCardController(EventBus eventBus, JSObject jsObject)
+	public BeidCardController(JSObject jsObject)
 	{	
 		logger.debug("init of the beidcardcontroller");
-		this.eventbus = eventBus;
 		this.externalConnectionService = initiateExternalConnectionService(jsObject);
-		addAsListener();
+		AnnotationProcessor.process(this);
 	}
 	
 	/**
@@ -115,24 +112,17 @@ public class BeidCardController {
 		else
 		{
 			logger.debug("creating the applet version (with liveconnect)");
-			return	JavaScriptConnectionFactory.createExternalConnection(this.getEventbus(), this, jsObject);
+			return	JavaScriptConnectionFactory.createExternalConnection(this, jsObject);
 		}
 	}
-	
-	/**
-	 * Adds this as listener.
-	 */
-	private void addAsListener()
-	{
-		eventbus.register(this);
-	}
+
 	
 	/**
 	 * On card detected.
 	 *
 	 * @param cardDetectedEvent the card detected event
 	 */
-	@Subscribe
+	@EventSubscriber(eventClass=CardDetectedEvent.class)
 	public void onCardDetected(CardDetectedEvent cardDetectedEvent)
 	{
 		this.cachedCard = cardDetectedEvent.getBeidCard();
@@ -144,7 +134,7 @@ public class BeidCardController {
 	 *
 	 * @param cardRemovedEvent the card removed event
 	 */
-	@Subscribe
+	@EventSubscriber(eventClass=CardRemovedEvent.class)
 	public void onCardRemoved(CardRemovedEvent cardRemovedEvent)
 	{
 		this.cachedCard = null;
@@ -160,26 +150,6 @@ public class BeidCardController {
 	public boolean hasCachedCard()
 	{
 		return (cachedCard != null);
-	}
-
-
-	/**
-	 * Gets the eventbus.
-	 *
-	 * @return the eventbus
-	 */
-	public EventBus getEventbus() {
-		return eventbus;
-	}
-
-
-	/**
-	 * Sets the eventbus.
-	 *
-	 * @param eventbus the new eventbus
-	 */
-	public void setEventbus(EventBus eventbus) {
-		this.eventbus = eventbus;
 	}
 
 	/**
