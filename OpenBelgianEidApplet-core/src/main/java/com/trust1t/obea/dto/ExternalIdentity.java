@@ -1,7 +1,7 @@
 /*
  *
  * This file is part of the Trust1T (R) project.
- * Copyright (c) 2013 Trust1T BVBA
+ * Copyright (c) 2013 Trust1T
  * Authors: Michallis Pashidis, Kwinten Pisman, Quinten De Swaef
  *
  * This program is free software; you can redistribute it and/or modify

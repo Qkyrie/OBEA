@@ -1,7 +1,7 @@
 /*
  *
  * This file is part of the Trust1T (R) project.
- * Copyright (c) 2013 Trust1T BVBA
+ * Copyright (c) 2013 Trust1T
  * Authors: Michallis Pashidis, Kwinten Pisman, Quinten De Swaef
  *
  * This program is free software; you can redistribute it and/or modify
@@ -46,6 +46,7 @@ import com.trust1t.obea.events.AddressFetchedEvent;
 import com.trust1t.obea.events.CardDetectedEvent;
 import com.trust1t.obea.events.CardRemovedEvent;
 import com.trust1t.obea.events.CertificateFetchedEvent;
+import com.trust1t.obea.events.HashSignedEvent;
 import com.trust1t.obea.events.IAppletEvent;
 import com.trust1t.obea.events.IdentityFetchedEvent;
 import com.trust1t.obea.events.PhotoFetchedEvent;
@@ -178,5 +179,12 @@ public abstract class ExternalConnectionService {
 	{
 		logger.debug("External service received oncertificate callback from eventbus");
 		this.getExternalAsyncOutputManager().onGetCertificateCallback(certificateFetchedEvent.getExternalCertificate(), certificateFetchedEvent.getCallback());
+	}
+	
+	@EventSubscriber(eventClass=HashSignedEvent.class)
+	public void _onHashSignedCallback(HashSignedEvent hashSignedEvent)
+	{
+		logger.debug("External service received onHashSigned callback from eventbus");
+		this.getExternalAsyncOutputManager().onHashSignedCallback(hashSignedEvent.getSignedHash(), hashSignedEvent.getCallback());
 	}
 }

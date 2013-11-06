@@ -190,10 +190,17 @@ var onSigningCertificateCallback = notYetImplemented;
 var onCACertificateCallback = notYetImplemented;
 var onRootCACertificateCallback = notYetImplemented;
 var onRRNCertificateCallback = notYetImplemented;
+var onHashSignedCallback = notYetImplemented;
 
 /*
  *	async function calls
  */
+
+function signRsaAsync(hash, _callback)
+{
+	onHashSignedCallback = _callback;
+	return obea.getExternalAsyncInputDelegate().signRsa(hash, 'onHashSignedCallback');
+}
 
 function getIdentityAsync(_callback)
 {

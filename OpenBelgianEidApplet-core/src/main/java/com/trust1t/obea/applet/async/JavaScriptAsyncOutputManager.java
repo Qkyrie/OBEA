@@ -1,7 +1,7 @@
 /*
  *
  * This file is part of the Trust1T (R) project.
- * Copyright (c) 2013 Trust1T BVBA
+ * Copyright (c) 2013 Trust1T
  * Authors: Michallis Pashidis, Kwinten Pisman, Quinten De Swaef
  *
  * This program is free software; you can redistribute it and/or modify
@@ -40,6 +40,7 @@ import org.bushe.swing.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.trust1t.obea.applet.dto.JSSignedHash;
 import com.trust1t.obea.async.ExternalAsyncOutputManager;
 import com.trust1t.obea.dto.ExternalAddress;
 import com.trust1t.obea.dto.ExternalCertificate;
@@ -62,7 +63,6 @@ public class JavaScriptAsyncOutputManager implements ExternalAsyncOutputManager{
 	/**
 	 * Instantiates a new java script async output manager.
 	 *
-	 * @param eventBus the event bus
 	 * @param jbObject the jb object
 	 */
 	public JavaScriptAsyncOutputManager(JSObject jbObject)
@@ -116,6 +116,18 @@ public class JavaScriptAsyncOutputManager implements ExternalAsyncOutputManager{
 			jsObject.call(callback, new Object[]{certificate});
 		} catch (Exception e) {
 			logger.error("error during the getCertificate callback to javascript for callback: {}", callback);
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.trust1t.obea.async.ExternalAsyncOutputManager#onHashSignedCallback(com.trust1t.obea.applet.dto.SignedHash, java.lang.String)
+	 */
+	public void onHashSignedCallback(JSSignedHash signedHash, String callback)
+	{
+		try {
+			jsObject.call(callback, new Object[]{signedHash});
+		} catch (Exception e) {
+			logger.error("error during the onHashSigned callback to the javascript for callback: {}", callback);
 		}
 	}
 

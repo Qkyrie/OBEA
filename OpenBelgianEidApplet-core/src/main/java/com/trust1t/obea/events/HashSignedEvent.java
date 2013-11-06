@@ -34,17 +34,51 @@
  */
 package com.trust1t.obea.events;
 
-// TODO: Auto-generated Javadoc
-/**
- * The event thrown when an applet is loaded.
- */
-public class AppletLoadedEvent implements IAppletEvent{
+import com.trust1t.obea.applet.dto.JSSignedHash;
 
-	/* (non-Javadoc)
-	 * @see com.qkyrie.ts.mkqapplet.events.IAppletEvent#getIdentifier()
-	 */
-	public String getIdentifier() {
-		return "_onAppletLoaded";
-	}
+/**
+ * The Class HashSignedEvent.
+ */
+public class HashSignedEvent{
+
+	/** The callback. */
+	private final String callback;
 	
+	/** The signed hash. */
+	private final JSSignedHash signedHash;
+
+	/**
+	 * Gets the callback.
+	 *
+	 * @return the callback
+	 */
+	public String getCallback() {
+		return callback;
+	}
+
+
+	/**
+	 * Instantiates a new hash signed event.
+	 *
+	 * @param signedHash the signed hash
+	 * @param callback the callback
+	 */
+	public HashSignedEvent(JSSignedHash signedHash, String callback) {
+		super();
+		this.signedHash = signedHash;
+		this.callback = callback;
+	}
+
+
+	/**
+	 * Gets the signed hash.
+	 *
+	 * @return the signedHash
+	 */
+	public JSSignedHash getSignedHash() {
+		return signedHash;
+	}
+
+	
+
 }

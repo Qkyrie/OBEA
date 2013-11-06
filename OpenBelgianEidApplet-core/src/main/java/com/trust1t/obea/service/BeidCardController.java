@@ -1,7 +1,7 @@
 /*
  *
  * This file is part of the Trust1T (R) project.
- * Copyright (c) 2013 Trust1T BVBA
+ * Copyright (c) 2013 Trust1T
  * Authors: Michallis Pashidis, Kwinten Pisman, Quinten De Swaef
  *
  * This program is free software; you can redistribute it and/or modify
@@ -51,6 +51,7 @@ import com.trust1t.obea.events.CardDetectedEvent;
 import com.trust1t.obea.events.CardRemovedEvent;
 import com.trust1t.obea.external.ExternalConnectionService;
 
+// TODO: Auto-generated Javadoc
 /**
  * <b>BeidCardContoller</b>
  * 
@@ -80,7 +81,6 @@ public class BeidCardController {
 	/**
 	 * Instantiates a new beid card manager.
 	 *
-	 * @param eventBus the event bus
 	 * @param jsObject the js object
 	 */
 	public BeidCardController(JSObject jsObject)
@@ -128,6 +128,7 @@ public class BeidCardController {
 		this.cachedCard = cardDetectedEvent.getBeidCard();
 		this.externalConnectionService._onCardDetected(cardDetectedEvent);
 	}
+	
 	
 	/**
 	 * On card removed.

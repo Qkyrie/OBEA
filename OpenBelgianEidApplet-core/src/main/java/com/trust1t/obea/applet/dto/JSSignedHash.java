@@ -32,19 +32,43 @@
  * Signing PDFs on the fly in a web application, shipping OCS with a closed
  * source product...
  */
-package com.trust1t.obea.events;
+package com.trust1t.obea.applet.dto;
 
-// TODO: Auto-generated Javadoc
-/**
- * The event thrown when an applet is loaded.
- */
-public class AppletLoadedEvent implements IAppletEvent{
+import com.trust1t.obea.dto.ExternalFailable;
 
+public class JSSignedHash implements ExternalFailable{
+
+	
+	private final String originalHash;
+	private final String result;
+	
 	/* (non-Javadoc)
-	 * @see com.qkyrie.ts.mkqapplet.events.IAppletEvent#getIdentifier()
+	 * @see com.trust1t.obea.dto.ExternalFailable#getErrorCode()
 	 */
-	public String getIdentifier() {
-		return "_onAppletLoaded";
+	public String getErrorCode() {
+		return new String("200");
 	}
+
+	public JSSignedHash(String originalHash, String result) {
+		super();
+		this.originalHash = originalHash;
+		this.result = result;
+	}
+
+	/**
+	 * @return the originalHash
+	 */
+	public String getOriginalHash() {
+		return originalHash;
+	}
+
+	/**
+	 * @return the result
+	 */
+	public String getResult() {
+		return result;
+	}
+
+	
 	
 }

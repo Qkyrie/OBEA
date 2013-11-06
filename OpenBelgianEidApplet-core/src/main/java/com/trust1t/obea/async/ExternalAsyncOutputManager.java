@@ -1,7 +1,7 @@
 /*
  *
  * This file is part of the Trust1T (R) project.
- * Copyright (c) 2013 Trust1T BVBA
+ * Copyright (c) 2013 Trust1T
  * Authors: Michallis Pashidis, Kwinten Pisman, Quinten De Swaef
  *
  * This program is free software; you can redistribute it and/or modify
@@ -34,6 +34,7 @@
  */
 package com.trust1t.obea.async;
 
+import com.trust1t.obea.applet.dto.JSSignedHash;
 import com.trust1t.obea.dto.ExternalAddress;
 import com.trust1t.obea.dto.ExternalCertificate;
 import com.trust1t.obea.dto.ExternalIdentity;
@@ -76,4 +77,12 @@ public interface ExternalAsyncOutputManager {
 	 * @param callback the callback
 	 */
 	void onGetCertificateCallback(ExternalCertificate certificate, String callback);
+	
+	/**
+	 * On hash signed callback.
+	 *
+	 * @param signedHash the signed hash
+	 * @param callback the callback
+	 */
+	void onHashSignedCallback(JSSignedHash signedHash, String callback);
 }

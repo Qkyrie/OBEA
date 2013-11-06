@@ -1,7 +1,7 @@
 /*
  *
  * This file is part of the Trust1T (R) project.
- * Copyright (c) 2013 Trust1T BVBA
+ * Copyright (c) 2013 Trust1T
  * Authors: Michallis Pashidis, Kwinten Pisman, Quinten De Swaef
  *
  * This program is free software; you can redistribute it and/or modify
@@ -41,9 +41,11 @@ import org.bushe.swing.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.trust1t.obea.applet.dto.JSSignedHash;
 import com.trust1t.obea.async.ExternalAsyncInputManager;
 import com.trust1t.obea.events.AddressFetchedEvent;
 import com.trust1t.obea.events.CertificateFetchedEvent;
+import com.trust1t.obea.events.HashSignedEvent;
 import com.trust1t.obea.events.IdentityFetchedEvent;
 import com.trust1t.obea.events.PhotoFetchedEvent;
 import com.trust1t.obea.external.ExternalConnectionService;
@@ -67,7 +69,6 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 	/**
 	 * Instantiates a new java script async input manager.
 	 *
-	 * @param eventBus the event bus
 	 * @param externalConnectionService the external connection service
 	 */
 	public JavaScriptAsyncInputManager(ExternalConnectionService externalConnectionService)
@@ -75,6 +76,27 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 		this.externalConnectionService = externalConnectionService;
 		//only create a threadpool of size 1, it should be a blockingqueue
 		this.executorService = Executors.newSingleThreadExecutor();
+	}
+	
+	/**
+	 * sign the hash asynchronously
+	 * @param hash
+	 * @param callback
+	 */
+	public void signRsa(final String hash, final String callback)
+	{
+		logger.debug("entering signRsa asynchronous method");
+		
+		executorService.submit(new Runnable() {
+			
+			public void run() {
+				logger.debug("running asynchronous signing");
+				JSSignedHash signedHash = new JSSignedHash(hash, getExternalConnectionService().getExternalInputManager().signRsa(hash).getResult());
+				HashSignedEvent event = new HashSignedEvent(signedHash, callback);
+				EventBus.publish(event);
+				logger.debug("done running asynchronous singing");
+			}
+		});
 	}
 	
 	/* (non-Javadoc)
