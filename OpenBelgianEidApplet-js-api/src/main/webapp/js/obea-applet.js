@@ -191,10 +191,16 @@ var onCACertificateCallback = notYetImplemented;
 var onRootCACertificateCallback = notYetImplemented;
 var onRRNCertificateCallback = notYetImplemented;
 var onHashSignedCallback = notYetImplemented;
-
+var onPinVerifiedCallback = notYetImplemented;
 /*
  *	async function calls
  */
+
+function verifyPinAsync(_callback)
+{
+	onPinVerifiedCallback = _callback;
+	return obea.getExternalAsyncInputDelegate().verifyPin('onPinVerifiedCallback');
+}
 
 function signRsaAsync(hash, _callback)
 {

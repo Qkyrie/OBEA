@@ -131,5 +131,15 @@ public class JavaScriptAsyncOutputManager implements ExternalAsyncOutputManager{
 		}
 	}
 
+	public void onPinVerifiedCallback(boolean pinVerified, String callback) {
+		try {
+			jsObject.call(callback, new Object[]{pinVerified});
+		} catch (Exception e) {
+			logger.error("error during the onPinVerified callback to the javascript");
+		}
+	
+		
+	}
+
 	
 }

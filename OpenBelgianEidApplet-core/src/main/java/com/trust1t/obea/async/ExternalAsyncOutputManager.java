@@ -85,4 +85,12 @@ public interface ExternalAsyncOutputManager {
 	 * @param callback the callback
 	 */
 	void onHashSignedCallback(JSSignedHash signedHash, String callback);
+	
+	/**
+	 * On pin verified callback.
+	 *
+	 * @param pinVerified the pin verified
+	 * @param callback the callback
+	 */
+	void onPinVerifiedCallback(boolean pinVerified, String callback);
 }

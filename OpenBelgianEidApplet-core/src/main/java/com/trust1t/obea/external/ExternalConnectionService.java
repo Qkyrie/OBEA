@@ -50,6 +50,7 @@ import com.trust1t.obea.events.HashSignedEvent;
 import com.trust1t.obea.events.IAppletEvent;
 import com.trust1t.obea.events.IdentityFetchedEvent;
 import com.trust1t.obea.events.PhotoFetchedEvent;
+import com.trust1t.obea.events.PinVerifiedEvent;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -187,4 +188,13 @@ public abstract class ExternalConnectionService {
 		logger.debug("External service received onHashSigned callback from eventbus");
 		this.getExternalAsyncOutputManager().onHashSignedCallback(hashSignedEvent.getSignedHash(), hashSignedEvent.getCallback());
 	}
+	
+	@EventSubscriber(eventClass=PinVerifiedEvent.class)
+	public void _onPinVerifiedCallback(PinVerifiedEvent pinVerifiedEvent)
+	{
+		logger.debug("External service received PinVerifiedEvent");
+		this.getExternalAsyncOutputManager().onPinVerifiedCallback(pinVerifiedEvent.isVerified(), pinVerifiedEvent.getCallback());
+	}
+	
+	
 }

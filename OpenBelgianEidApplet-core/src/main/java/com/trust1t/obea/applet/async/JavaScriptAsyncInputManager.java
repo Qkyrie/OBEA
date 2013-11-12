@@ -48,6 +48,7 @@ import com.trust1t.obea.events.CertificateFetchedEvent;
 import com.trust1t.obea.events.HashSignedEvent;
 import com.trust1t.obea.events.IdentityFetchedEvent;
 import com.trust1t.obea.events.PhotoFetchedEvent;
+import com.trust1t.obea.events.PinVerifiedEvent;
 import com.trust1t.obea.external.ExternalConnectionService;
 
 // TODO: Auto-generated Javadoc
@@ -78,6 +79,29 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 		this.executorService = Executors.newSingleThreadExecutor();
 	}
 	
+
+	/**
+	 * Verify pin.
+	 *
+	 * @param callback the callback
+	 */
+	public void verifyPin(final String callback) {
+	
+		logger.debug("entering verifyPin asynchronous method");
+		
+		executorService.submit(new Runnable() {
+			
+			public void run() {
+				logger.debug("running asynchronous pinverify");
+				
+				PinVerifiedEvent event = new PinVerifiedEvent(getExternalConnectionService().getExternalInputManager().verifyPin(), callback);
+				EventBus.publish(event);
+				logger.debug("done running asynchronous pinverification");
+			}
+		});
+		
+	}
+
 
 	/* (non-Javadoc)
 	 * @see com.trust1t.obea.async.ExternalAsyncInputManager#signRsa(java.lang.String, java.lang.String)
@@ -239,6 +263,7 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 	public ExternalConnectionService getExternalConnectionService() {
 		return externalConnectionService;
 	}
+
 
 
 }

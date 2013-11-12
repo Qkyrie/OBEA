@@ -32,85 +32,51 @@
  * Signing PDFs on the fly in a web application, shipping OCS with a closed
  * source product...
  */
-package com.trust1t.obea.async;
+package com.trust1t.obea.events;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * this is the core's API.
- *
- * @author Quinten
+ * The Class HashSignedEvent.
  */
-public interface ExternalAsyncInputManager {
+public class PinVerifiedEvent{
+
+	/** The callback. */
+	private final String callback;
+
+	private final boolean verified;
+	/**
+	 * @return the verified
+	 */
+	public boolean isVerified() {
+		return verified;
+	}
+
 
 	/**
-	 * Gets the identity.
+	 * Gets the callback.
 	 *
-	 * @param callback the callback
-	 * @return the identity
+	 * @return the callback
 	 */
-	void getIdentity(String callback);
-	
+	public String getCallback() {
+		return callback;
+	}
+
+
 	/**
-	 * Gets the address.
+	 * Instantiates a new hash signed event.
 	 *
+	 * @param signedHash the signed hash
 	 * @param callback the callback
-	 * @return the address
 	 */
-	void getAddress(String callback);
+	public PinVerifiedEvent(boolean verified, String callback) {
+		super();
+		this.callback = callback;
+		this.verified = verified;
+	}
+
+
+
+
 	
-	/**
-	 * Gets the photo.
-	 *
-	 * @param callback the callback
-	 * @return the photo
-	 */
-	void getPhoto(String callback);
-	
-	/**
-	 * Gets the authentication certificate.
-	 *
-	 * @param callback the callback
-	 * @return the authentication certificate
-	 */
-	void getAuthenticationCertificate(String callback);
-	
-	/**
-	 * Gets the signing certificate.
-	 *
-	 * @param callback the callback
-	 * @return the signing certificate
-	 */
-	void getSigningCertificate(String callback);
-	
-	/**
-	 * Gets the cA certificate.
-	 *
-	 * @param callback the callback
-	 * @return the cA certificate
-	 */
-	void getCACertificate(String callback);
-	
-	/**
-	 * Gets the root ca certificate.
-	 *
-	 * @param callback the callback
-	 * @return the root ca certificate
-	 */
-	void getRootCACertificate(String callback);
-	
-	/**
-	 * Gets the rRN certificate.
-	 *
-	 * @param callback the callback
-	 * @return the rRN certificate
-	 */
-	void getRRNCertificate(String callback);
-	
-	void signRsa(final String hash, final String callback);
-	
-	/**
-	 * the verification of the pin also has to be done asynchronously
-	 */
-	void verifyPin(final String callback);
-	
+
 }
