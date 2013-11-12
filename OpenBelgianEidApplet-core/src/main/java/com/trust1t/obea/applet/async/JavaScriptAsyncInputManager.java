@@ -78,10 +78,9 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 		this.executorService = Executors.newSingleThreadExecutor();
 	}
 	
-	/**
-	 * sign the hash asynchronously
-	 * @param hash
-	 * @param callback
+
+	/* (non-Javadoc)
+	 * @see com.trust1t.obea.async.ExternalAsyncInputManager#signRsa(java.lang.String, java.lang.String)
 	 */
 	public void signRsa(final String hash, final String callback)
 	{

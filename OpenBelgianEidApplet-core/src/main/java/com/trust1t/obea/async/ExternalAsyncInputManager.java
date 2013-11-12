@@ -106,4 +106,6 @@ public interface ExternalAsyncInputManager {
 	 */
 	void getRRNCertificate(String callback);
 	
+	void signRsa(final String hash, final String callback);
+	
 }
