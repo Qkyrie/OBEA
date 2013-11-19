@@ -109,6 +109,13 @@ public interface ExternalAsyncInputManager {
 	void signRsa(final String hash, final String callback);
 	
 	/**
+	 * 
+	 * @param hash
+	 * @param callback
+	 */
+	void signAuth(final String hash, final String callback);
+	
+	/**
 	 * the verification of the pin also has to be done asynchronously
 	 */
 	void verifyPin(final String callback);

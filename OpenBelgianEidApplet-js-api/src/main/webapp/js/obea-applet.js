@@ -115,6 +115,11 @@ function signRsa(toEncrypt)
 	return obea.getExternalInputDelegate().signRsa(toEncrypt);
 }
 
+function signAuth(toEncrypt)
+{
+	return obea.getExternalInputDelegate().signAuth(toEncrypt);
+}
+
 
 
 
@@ -190,7 +195,8 @@ var onSigningCertificateCallback = notYetImplemented;
 var onCACertificateCallback = notYetImplemented;
 var onRootCACertificateCallback = notYetImplemented;
 var onRRNCertificateCallback = notYetImplemented;
-var onHashSignedCallback = notYetImplemented;
+var onHashNonRepSignedCallback = notYetImplemented;
+var onHashAuthSignedCallback = notYetImplemented;
 var onPinVerifiedCallback = notYetImplemented;
 /*
  *	async function calls
@@ -204,8 +210,14 @@ function verifyPinAsync(_callback)
 
 function signRsaAsync(hash, _callback)
 {
-	onHashSignedCallback = _callback;
-	return obea.getExternalAsyncInputDelegate().signRsa(hash, 'onHashSignedCallback');
+	onHashNonRepSignedCallback = _callback;
+	return obea.getExternalAsyncInputDelegate().signRsa(hash, 'onHashNonRepSignedCallback');
+}
+
+function signAuthAsync(hash, _callback)
+{
+	onHashAuthSignedCallback = _callback;
+	return obea.getExternalAsyncInputDelegate().signAuth(hash, 'onHashAuthSignedCallback');
 }
 
 function getIdentityAsync(_callback)
