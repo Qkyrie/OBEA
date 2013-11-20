@@ -214,11 +214,24 @@ function signRsaAsync(hash, _callback)
 	return obea.getExternalAsyncInputDelegate().signRsa(hash, 'onHashNonRepSignedCallback');
 }
 
+function signRsaAsync(hash, digestAlgorithm, _callback)
+{
+	onHashNonRepSignedCallback = _callback;
+	return obea.getExternalAsyncInputDelegate().signRsa(hash, digestAlgorithm, 'onHashNonRepSignedCallback');
+}
+
 function signAuthAsync(hash, _callback)
 {
 	onHashAuthSignedCallback = _callback;
 	return obea.getExternalAsyncInputDelegate().signAuth(hash, 'onHashAuthSignedCallback');
 }
+
+function signAuthAsync(hash, digestAlgorithm, _callback)
+{
+	onHashAuthSignedCallback = _callback;
+	return obea.getExternalAsyncInputDelegate().signAuth(hash, digestAlgorithm, 'onHashAuthSignedCallback');
+}
+
 
 function getIdentityAsync(_callback)
 {

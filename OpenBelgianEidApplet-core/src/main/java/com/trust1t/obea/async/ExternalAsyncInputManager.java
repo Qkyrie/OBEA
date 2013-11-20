@@ -106,17 +106,44 @@ public interface ExternalAsyncInputManager {
 	 */
 	void getRRNCertificate(String callback);
 	
+	/**
+	 * Sign rsa.
+	 *
+	 * @param hash the hash
+	 * @param callback the callback
+	 */
 	void signRsa(final String hash, final String callback);
 	
 	/**
-	 * 
-	 * @param hash
-	 * @param callback
+	 * Sign rsa.
+	 *
+	 * @param hash the hash
+	 * @param digestAlgorithm the digest algorithm
+	 * @param callback the callback
+	 */
+	void signRsa(final String hash, final String digestAlgorithm, final String callback);
+	
+	/**
+	 * Sign auth.
+	 *
+	 * @param hash the hash
+	 * @param callback the callback
 	 */
 	void signAuth(final String hash, final String callback);
 	
 	/**
-	 * the verification of the pin also has to be done asynchronously
+	 * Sign auth.
+	 *
+	 * @param hash the hash
+	 * @param digestAlgorithm the digest algorithm
+	 * @param callback the callback
+	 */
+	void signAuth(final String hash, final String digestAlgorithm, final String callback);
+	
+	/**
+	 * the verification of the pin also has to be done asynchronously.
+	 *
+	 * @param callback the callback
 	 */
 	void verifyPin(final String callback);
 	

@@ -63,12 +63,31 @@ public interface ExternalInputManager {
     ExternalSignResponse signRsa(String base64EncodedBytes);
     
     /**
+     * Sign rsa.
+     *
+     * @param base64EncodedBytes the base64 encoded bytes
+     * @param hashAlgorithm the hash algorithm
+     * @return the external sign response
+     */
+    ExternalSignResponse signRsa(String base64EncodedBytes, String hashAlgorithm);
+    
+    /**
      * Sign auth.
      *
      * @param base64EncodedBytes the base64 encoded bytes
      * @return the external sign response
      */
     ExternalSignResponse signAuth(String base64EncodedBytes);
+    
+    
+    /**
+     * Sign auth.
+     *
+     * @param base64EncodedBytes the base64 encoded bytes
+     * @param hashAlgorithm the hash algorithm
+     * @return the external sign response
+     */
+    ExternalSignResponse signAuth(String base64EncodedBytes, String hashAlgorithm);
 
     /**
      * Verify pin.
