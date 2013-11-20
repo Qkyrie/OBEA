@@ -95,6 +95,37 @@ public class JavaScriptInputManagerAPITest {
 		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "getRRNCertificate", String.class));
 	}
 	
+	@Test
+	public void verifyPinExists()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "verifyPin", String.class));
+	}
+	
+
+	@Test
+	public void signRsaExists()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "signRsa", String.class, String.class));
+	}
+	
+	@Test
+	public void signAuthExists()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "signAuth", String.class, String.class));
+	}
+	
+	@Test
+	public void signRsaWithAlgorithmChoiceExists()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "signRsa", String.class, String.class, String.class));
+	}
+	
+	@Test
+	public void signAuthWithAlgorithmChoiceExists()
+	{
+		assertTrue(TestReflectionUtils.methodExists(JavaScriptAsyncInputManager.class, "signAuth", String.class, String.class, String.class));
+	}
+	
 	/** synchronous methods **/
 	/**
 	 * Check if the method for getting the version in the api still exists.

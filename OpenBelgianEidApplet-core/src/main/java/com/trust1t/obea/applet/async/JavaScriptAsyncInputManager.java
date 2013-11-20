@@ -121,9 +121,26 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			}
 		});
 	}
-	
-	
-	
+		
+	/* (non-Javadoc)
+	 * @see com.trust1t.obea.async.ExternalAsyncInputManager#signRsa(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public void signRsa(final String hash, final String digestAlgorithm, final String callback) {
+		logger.debug("entering signRsa asynchronous method");
+		
+		executorService.submit(new Runnable() {
+			
+			public void run() {
+				logger.debug("running asynchronous signing");
+				JSSignedHash signedHash = new JSSignedHash(hash, getExternalConnectionService().getExternalInputManager().signRsa(hash, digestAlgorithm).getResult());
+				HashSignedEvent event = new HashSignedEvent(signedHash, callback);
+				EventBus.publish(event);
+				logger.debug("done running asynchronous singing");
+			}
+		});
+	}
+
+
 	/* (non-Javadoc)
 	 * @see com.trust1t.obea.async.ExternalAsyncInputManager#signAuth(java.lang.String, java.lang.String)
 	 */
@@ -135,6 +152,24 @@ public class JavaScriptAsyncInputManager implements ExternalAsyncInputManager{
 			public void run() {
 				logger.debug("running asynchronous signing auth");
 				JSSignedHash signedHash = new JSSignedHash(hash, getExternalConnectionService().getExternalInputManager().signAuth(hash).getResult());
+				HashSignedEvent event = new HashSignedEvent(signedHash, callback);
+				EventBus.publish(event);
+				logger.debug("done running asynchronous singing");
+			}
+		});
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.trust1t.obea.async.ExternalAsyncInputManager#signAuth(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public void signAuth(final String hash, final String digestAlgorithm, final String callback) {
+		logger.debug("entering signAuth asynchronous method");
+		
+		executorService.submit(new Runnable() {
+			
+			public void run() {
+				logger.debug("running asynchronous signing auth");
+				JSSignedHash signedHash = new JSSignedHash(hash, getExternalConnectionService().getExternalInputManager().signAuth(hash, digestAlgorithm).getResult());
 				HashSignedEvent event = new HashSignedEvent(signedHash, callback);
 				EventBus.publish(event);
 				logger.debug("done running asynchronous singing");

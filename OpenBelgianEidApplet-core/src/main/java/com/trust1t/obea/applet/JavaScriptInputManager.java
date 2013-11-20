@@ -698,10 +698,39 @@ public class JavaScriptInputManager implements ExternalInputManager {
 	 * com.trust1t.obea.external.ExternalInputManager#signRsa(java.lang.String)
 	 */
 	public ExternalSignResponse signRsa(final String base64EncodedBytes) {
+		return signRsa(base64EncodedBytes, "SHA_512");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.trust1t.obea.external.ExternalInputManager#signRsa(java.lang.String,
+	 * java.lang.String)
+	 */
+	public ExternalSignResponse signRsa(final String base64EncodedBytes,
+			final String hashAlgorithm) {
+
 		// if the pin wasn't set yet, return false
 		if (this.cachedPin == null || this.cachedPin.equals("")) {
 			return new JSSignResponse(ExternalErrorCodes.NO_PIN_PRIVIDED);
 		}
+
+		// try to find the hashing algorithm
+		BeIDDigest digest = null;
+		try {
+			digest = BeIDDigest.valueOf(hashAlgorithm);
+		} catch (Exception e) {
+			return new JSSignResponse(
+					ExternalErrorCodes.DIGEST_ALGORITHM_NOT_FOUND);
+		}
+
+		if (digest == null) {
+			return new JSSignResponse(
+					ExternalErrorCodes.DIGEST_ALGORITHM_NOT_FOUND);
+		}
+		
+		final BeIDDigest digestCode = digest;
 
 		// else create new pincache for gui
 		PinCache cache = new PinCache(this.cachedPin);
@@ -719,7 +748,7 @@ public class JavaScriptInputManager implements ExternalInputManager {
 								byte[] returnValue = beidCardController
 										.getCachedCard()
 										.sign(originalBytes,
-												BeIDDigest.SHA_512,
+												digestCode,
 												FileType.NonRepudiationCertificate,
 												false);
 								String returnValueEncoded = Base64
@@ -749,10 +778,38 @@ public class JavaScriptInputManager implements ExternalInputManager {
 	 * com.trust1t.obea.external.ExternalInputManager#signAuth(java.lang.String)
 	 */
 	public ExternalSignResponse signAuth(final String base64EncodedBytes) {
+		return signAuth(base64EncodedBytes, "SHA_512");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.trust1t.obea.external.ExternalInputManager#signAuth(java.lang.String,
+	 * java.lang.String)
+	 */
+	public ExternalSignResponse signAuth(final String base64EncodedBytes,
+			String hashAlgorithm) {
 		// if the pin wasn't set yet, return false
 		if (this.cachedPin == null || this.cachedPin.equals("")) {
 			return new JSSignResponse(ExternalErrorCodes.NO_PIN_PRIVIDED);
 		}
+
+		// try to find the hashing algorithm
+		BeIDDigest digest = null;
+		try {
+			digest = BeIDDigest.valueOf(hashAlgorithm);
+		} catch (Exception e) {
+			return new JSSignResponse(
+					ExternalErrorCodes.DIGEST_ALGORITHM_NOT_FOUND);
+		}
+
+		if (digest == null) {
+			return new JSSignResponse(
+					ExternalErrorCodes.DIGEST_ALGORITHM_NOT_FOUND);
+		}
+		
+		final BeIDDigest digestCode = digest;
 
 		// else create new pincache for gui
 		PinCache cache = new PinCache(this.cachedPin);
@@ -770,7 +827,7 @@ public class JavaScriptInputManager implements ExternalInputManager {
 								byte[] returnValue = beidCardController
 										.getCachedCard()
 										.sign(originalBytes,
-												BeIDDigest.SHA_256,
+												digestCode,
 												FileType.AuthentificationCertificate,
 												false);
 								String returnValueEncoded = Base64

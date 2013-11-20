@@ -46,7 +46,8 @@ public enum ExternalErrorCodes {
  CARD_BUSY("423"), /** The certificate problem. */
  CERTIFICATE_PROBLEM("415"),
  ILLEGAL_ARGUMENT("414"),
- NO_PIN_PRIVIDED("430");
+ NO_PIN_PRIVIDED("430"),
+ DIGEST_ALGORITHM_NOT_FOUND("432");
 	
 	/** The error code. */
 	private String errorCode;
