@@ -1,0 +1,163 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <artifactId>OpenBelgianEidApplet-core</artifactId>
+        <parent>
+                <groupId>com.trust1t</groupId>
+                <artifactId>OpenBelgianEidApplet</artifactId>
+                <version>1.2.0</version>
+        </parent>
+
+
+        <developers>
+                <developer>
+                        <name>Quinten De Swaef</name>
+                        <email>quinten@trust1t.com</email>
+                        <organizationUrl>http://trust1t.com</organizationUrl>
+                        <organization>Trust1T</organization>
+                        <timezone>+1</timezone>
+                        <properties>
+                                <skype>quintendeswaef@gmail.com</skype>
+                        </properties>
+                </developer>
+        </developers>
+
+        <licenses>
+                <license>
+                        <name>GNU Affero General Public License v3</name>
+                        <url>http://www.spdx.org/licenses/AGPL-3.0</url>
+                </license>
+        </licenses>
+
+
+        <dependencies>
+                <dependency>
+                        <groupId>be.fedict.commons-eid</groupId>
+                        <artifactId>commons-eid-jca</artifactId>
+                </dependency>
+                <dependency>
+                        <groupId>be.fedict.commons-eid</groupId>
+                        <artifactId>commons-eid-client</artifactId>
+                </dependency>
+                <dependency>
+                        <groupId>be.fedict.commons-eid</groupId>
+                        <artifactId>commons-eid-consumer</artifactId>
+                </dependency>
+                <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                        <version>1.7.5</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>com.sun.jdk.applet</groupId>
+                        <artifactId>plugin</artifactId>
+                        <version>1.5</version>
+                        <scope>system</scope>
+                        <systemPath>${java.home}/lib/plugin.jar</systemPath>
+                </dependency>
+                <dependency>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                        <version>4.8.2</version>
+                        <scope>test</scope>
+                </dependency>
+                <dependency>
+                        <groupId>commons-codec</groupId>
+                        <artifactId>commons-codec</artifactId>
+                        <version>1.8</version>
+                </dependency>
+                        <dependency>
+                        <groupId>org.bushe</groupId>
+                        <artifactId>eventbus</artifactId>
+                        <version>1.4</version>
+                </dependency>
+                        <dependency>
+                                <groupId>org.slf4j</groupId>
+                                <artifactId>slf4j-simple</artifactId>
+                                <version>1.7.5</version>
+                        </dependency>
+        </dependencies>
+
+
+
+        <build>
+                <plugins>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-assembly-plugin</artifactId>
+                                <version>2.4</version>
+                                <configuration>
+                                        <descriptorRefs>
+                                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                                        </descriptorRefs>
+                                        <archive>
+                                                <manifestEntries>
+                                                        <Trusted-Library>true</Trusted-Library>
+                                                        <Caller-Allowable-Codebase>opensignserver.com 127.0.0.1 localhost</Caller-Allowable-Codebase>
+                                                </manifestEntries>
+                                        </archive>
+                                </configuration>
+                                <executions>
+                                        <execution>
+                                                <phase>package</phase>
+                                                <goals>
+                                                        <goal>single</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                        </plugin>
+                </plugins>
+        </build>
+
+
+
+        <reporting>
+                <plugins>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-javadoc-plugin</artifactId>
+                                <version>2.9</version>
+                                <configuration>
+                                        <aggregate>true</aggregate>
+                                </configuration>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-jxr-plugin</artifactId>
+                                <version>2.3</version>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-surefire-report-plugin</artifactId>
+                                <version>2.12.4</version>
+                        </plugin>
+                </plugins>
+        </reporting>
+
+        <dependencyManagement>
+                <dependencies>
+                        <dependency>
+                                <groupId>be.fedict.commons-eid</groupId>
+                                <artifactId>commons-eid-bom</artifactId>
+                                <version>0.4.0</version>
+                                <type>pom</type>
+                                <scope>import</scope>
+                        </dependency>
+                </dependencies>
+
+        </dependencyManagement>
+
+        <!-- repository to deploy to -->
+        <distributionManagement>
+                <repository>
+                        <id>Releases</id>
+                        <url>http://bilooky.com:8081/nexus/content/repositories/releases</url>
+                </repository>
+                <snapshotRepository>
+                        <id>Snapshots</id>
+                        <url>http://bilooky.com:8081/nexus/content/repositories/snapshots</url>
+                </snapshotRepository>
+        </distributionManagement>
+
+</project>
