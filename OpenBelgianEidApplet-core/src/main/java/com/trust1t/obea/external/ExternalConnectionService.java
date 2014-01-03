@@ -44,6 +44,8 @@ import com.trust1t.obea.async.ExternalAsyncInputManager;
 import com.trust1t.obea.async.ExternalAsyncOutputManager;
 import com.trust1t.obea.events.AddressFetchedEvent;
 import com.trust1t.obea.events.CardDetectedEvent;
+import com.trust1t.obea.events.CardReaderConnectedEvent;
+import com.trust1t.obea.events.CardReaderRemovedEvent;
 import com.trust1t.obea.events.CardRemovedEvent;
 import com.trust1t.obea.events.CertificateFetchedEvent;
 import com.trust1t.obea.events.HashSignedEvent;
@@ -132,6 +134,17 @@ public abstract class ExternalConnectionService {
 	{	
 		logger.debug("External Service received onCardRemoved from eventbus");
 		this.getExternalOutputManager().onCardEvent(cardRemovedEvent);
+	}
+	
+	
+	public void _onCardReaderRemoved(CardReaderRemovedEvent cardReaderRemovedEvent){
+		logger.debug("External Service received onCardReaderRemoved from eventbus");
+		this.getExternalOutputManager().onCardEvent(cardReaderRemovedEvent);
+	}
+	
+	public void _onCardReaderConnected(CardReaderConnectedEvent cardReaderConnectedEvent){
+		logger.debug("External Service received onCardReaderConnected from eventbus");
+		this.getExternalOutputManager().onCardEvent(cardReaderConnectedEvent);
 	}
 	
 	/**

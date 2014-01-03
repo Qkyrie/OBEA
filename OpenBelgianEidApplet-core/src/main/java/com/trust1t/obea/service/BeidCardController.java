@@ -36,7 +36,6 @@ package com.trust1t.obea.service;
 
 import netscape.javascript.JSObject;
 
-import org.bushe.swing.event.EventBus;
 import org.bushe.swing.event.annotation.AnnotationProcessor;
 import org.bushe.swing.event.annotation.EventSubscriber;
 import org.slf4j.Logger;
@@ -48,6 +47,8 @@ import be.fedict.commons.eid.client.spi.BeIDCardUI;
 import com.trust1t.obea.applet.JavaScriptConnectionFactory;
 import com.trust1t.obea.applet.ui.UIBridge;
 import com.trust1t.obea.events.CardDetectedEvent;
+import com.trust1t.obea.events.CardReaderConnectedEvent;
+import com.trust1t.obea.events.CardReaderRemovedEvent;
 import com.trust1t.obea.events.CardRemovedEvent;
 import com.trust1t.obea.external.ExternalConnectionService;
 
@@ -142,6 +143,15 @@ public class BeidCardController {
 		this.externalConnectionService._onCardRemoved(cardRemovedEvent);
 	}
 	
+	@EventSubscriber(eventClass=CardReaderRemovedEvent.class)
+	public void onCardReaderRemoved(CardReaderRemovedEvent cardReaderRemovedEvent){
+		this.externalConnectionService._onCardReaderRemoved(cardReaderRemovedEvent);
+	}
+	
+	@EventSubscriber(eventClass=CardReaderConnectedEvent.class)
+	public void onCardReaderConnected(CardReaderConnectedEvent cardReaderConnectedEvent){
+		this.externalConnectionService._onCardReaderConnected(cardReaderConnectedEvent);
+	}
 	
 	/**
 	 * Checks for cached card.

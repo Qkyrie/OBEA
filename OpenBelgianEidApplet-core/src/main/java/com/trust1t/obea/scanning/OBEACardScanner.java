@@ -42,68 +42,88 @@ import be.fedict.commons.eid.client.BeIDCardManager;
 import be.fedict.commons.eid.client.CardAndTerminalManager;
 
 import com.trust1t.obea.listening.OBEACardListener;
+import com.trust1t.obea.listening.OBEATerminalListener;
 
 /**
- * The main class that makes sure the applet keeps running. This scanner is mainly a wrapper around
- * the terminalmanager and beidcardmanager provided by commons eid.
+ * The main class that makes sure the applet keeps running. This scanner is
+ * mainly a wrapper around the terminalmanager and beidcardmanager provided by
+ * commons eid.
  */
 public class OBEACardScanner {
 
 	/** The logger. */
 	private Logger logger = LoggerFactory.getLogger(OBEACardScanner.class);
 	
+	//Hold in static variables so the workaround in restartCardCommunication can work
+	private static CardAndTerminalManager terminalManager;
+	private static BeIDCardManager manager;
+
 	/** The is running. */
-	private boolean isRunning = false;
-	
+	private static boolean isRunning = false;
 
 	/**
 	 * Instantiates a new mKQ card scanner.
-	 *
-	 * @param eventBus the event bus
+	 * 
+	 * @param eventBus
+	 *            the event bus
 	 */
-	public OBEACardScanner()
-	{
+	public OBEACardScanner() {
 		logger.trace("first init of the MKQCardScanner");
 	}
-	
+
 	/**
 	 * Inits the.
 	 */
-	public void init()
-	{		
-		if(!isRunning)
-		{
-			CardAndTerminalManager terminalManager = new CardAndTerminalManager();
-			BeIDCardManager manager = new BeIDCardManager(terminalManager);
+	public void init() {
+		if (!isRunning) {
+			terminalManager = new CardAndTerminalManager();
+			terminalManager.addCardTerminalListener(new OBEATerminalListener());
+			manager = new BeIDCardManager(terminalManager);
 			manager.addBeIDCardEventListener(new OBEACardListener());
-			
+
 			logger.trace("starting terminalManager");
 			terminalManager.start();
-	
 			isRunning = true;
-		
-		}
-		else
-		{
+
+		} else {
 			logger.trace("main thread was already running");
 		}
-		
+
 		letMeSleep();
 	}
-	
+
+	/**
+	 * Workaround for bug in JRE where PCSCException is thrown when reconnecting
+	 * the cardreader.
+	 */
+	public static void restartCardCommuncation(){
+		if(isRunning){
+			try {
+				terminalManager.stop();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			isRunning = false;
+		}
+		terminalManager = new CardAndTerminalManager();
+		terminalManager.addCardTerminalListener(new OBEATerminalListener());
+		manager = new BeIDCardManager(terminalManager);
+		manager.addBeIDCardEventListener(new OBEACardListener());
+
+		terminalManager.start();
+		isRunning = true;
+	}
+
 	/**
 	 * Let me sleep.
 	 */
-	private void letMeSleep()
-	{
+	private void letMeSleep() {
 		try {
 			logger.trace("sending main thread to sleep");
 			Thread.sleep(5000L);
 		} catch (InterruptedException e) {
 			logger.error("MKQCardscanner was unable to wait");
-		}
-		finally
-		{
+		} finally {
 			logger.trace("done sleeping, reinit");
 			this.init();
 		}
@@ -111,7 +131,7 @@ public class OBEACardScanner {
 
 	/**
 	 * Checks if is running.
-	 *
+	 * 
 	 * @return true, if is running
 	 */
 	public boolean isRunning() {
@@ -120,13 +140,12 @@ public class OBEACardScanner {
 
 	/**
 	 * Sets the running.
-	 *
-	 * @param isRunning the new running
+	 * 
+	 * @param isRunning
+	 *            the new running
 	 */
 	public void setRunning(boolean isRunning) {
 		this.isRunning = isRunning;
 	}
-	
-	
-	
+
 }
