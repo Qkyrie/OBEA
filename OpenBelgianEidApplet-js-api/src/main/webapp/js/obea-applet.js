@@ -18,7 +18,8 @@ function startApplet() {
 		code : 'com/trust1t/obea/applet/OBEA.class',
 		name : 'obea',
 		width : '0',
-		height : '0'
+		height : '0',
+		permissions : 'all-permissions'
 	};
 	deployJava.runApplet(attributes, parameters, minimumJavaVersion);
 }

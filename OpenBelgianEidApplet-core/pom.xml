@@ -102,7 +102,7 @@
 				<archive>
 					<manifestEntries>
 						<Trusted-Library>true</Trusted-Library>
-						<Caller-Allowable-Codebase>opensignserver.com 127.0.0.1 localhost</Caller-Allowable-Codebase>
+						<Caller-Allowable-Codebase>127.0.0.1 localhost</Caller-Allowable-Codebase>
 						<Permissions>all-permissions</Permissions>
 					</manifestEntries>
 				</archive>
