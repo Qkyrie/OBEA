@@ -9,16 +9,26 @@
 	<packaging>pom</packaging>
 
 	<developers>
-		<developer>
-			<name>Quinten De Swaef</name>
-			<email>quinten@trust1t.com</email>
-			<organizationUrl>http://trust1t.com</organizationUrl>
-			<organization>Trust1T</organization>
-			<timezone>+1</timezone>
-			<properties>
-				<skype>quintendeswaef@gmail.com</skype>
-			</properties>
-		</developer>
+        <developer>
+            <name>Kwinten Pisman</name>
+            <email>kwinten@trust1team.com</email>
+            <organizationUrl>http://trust1team.org</organizationUrl>
+            <organization>Trust1Team</organization>
+            <timezone>+1</timezone>
+            <properties>
+                <skype>kwinten.pisman</skype>
+            </properties>
+        </developer>
+        <developer>
+            <name>Michallis Pashidis</name>
+            <email>michallis@trust1team.com</email>
+            <organizationUrl>http://trust1team.org</organizationUrl>
+            <organization>Trust1Team</organization>
+            <timezone>+1</timezone>
+            <properties>
+                <skype>michallis.pashidis</skype>
+            </properties>
+        </developer>
 	</developers>
 
 	<modules>
